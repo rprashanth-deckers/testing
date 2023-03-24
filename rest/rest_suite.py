@@ -6,12 +6,12 @@ class test_suite(unittest.TestCase):
 
 
     def get_api(self,api):
-        ''' Funtion used to get the user for the give API'''
+        ''' FUNTION USED TO GET THE USER FOR THE GIVE API'''
         response = requests.get(api)
         return response
 
     def create_api(self,api,payload):
-        ''' Function used to create the user for a given API'''
+        ''' FUNCTION USED TO CREATE THE USER FOR A GIVEN API'''
         
         reponse = requests.post(url=api,json=payload)
         print(reponse)
@@ -20,7 +20,7 @@ class test_suite(unittest.TestCase):
     
     def test1(self):
         
-        ''' Test cases to validate the get request'''
+        ''' TEST CASES TO VALIDATE THE GET REQUEST'''
     
         resp = self.get_api('https://reqres.in/api/users/2')
 
@@ -29,7 +29,7 @@ class test_suite(unittest.TestCase):
             
     def test2(self):
         
-        ''' Test case to Validate the create request '''
+        ''' TEST CASE TO VALIDATE THE CREATE REQUEST '''
         
         resp_create = self.create_api('https://reqres.in/api/users',{"name" : "morpheus" , "job" : "leader"})  # can pass run time argument
        
@@ -38,7 +38,7 @@ class test_suite(unittest.TestCase):
             
     def test3(self):
         
-        ''' To test the invalid URL Scenrio'''
+        ''' TO TEST THE INVALID URL SCENRIO''''
         
         
         try:
@@ -49,6 +49,21 @@ class test_suite(unittest.TestCase):
             
         finally:
             print("The test case is passed successfully")
+            
+            
+    def test4(self):
+        
+        '''TEST CASE TO VALIDATE A WRONG REQUES REQUEST '''
+        
+        resp_create = self.create_api('https://reqres.in/api/users',{"name" : "morpheus" , "job" : "leader"})  # can pass run time argument
+        
+        try:
+            if resp_create.status_code == 200:
+                print("The test scenario is covered to test the reponse code 200 passed successfully")               
+        except:
+            print("Code error")
+        else:
+            print("The create response is {} not 200 ".format(resp_create))
 
             
 

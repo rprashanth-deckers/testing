@@ -7,7 +7,7 @@ class data_merge():
          
          Manadatory Parameters:
          
-         src_file_path : Pass the source file path  eg : 'app\input\InstrumentDetails.csv.csv'
+         src_file_path : Pass the source file path  eg : 'app\input\InstrumentDetails.csv'
          
          target_file_path : Pass the targe file path eg : 'app\inpout\PositionDetails.csv'
          
@@ -15,13 +15,25 @@ class data_merge():
         import pandas as pd
         import numpy as np
 
-        self.source_table = pd.read_csv(src_file_path)#dtype={"client_id" :"float" ,"consumer_zip" : "float" })
+        self.source_table = pd.read_csv(src_file_path)
         self.target_table = pd.read_csv(target_file_path)
         
-        print(self.source_table.shape)
-        print(self.target_table.shape)
+        
+        print("################################# InstrumentDetails.csv #############################################################")
+        print(self.source_table)
+        
+        print("################################# PositionDetails.csv #############################################################")
+
+        print(self.target_table)
         
         self.combined = pd.merge(self.source_table,self.target_table,how='left',left_on='ISIN',right_on='ISIN')
-        print(self.combined)
         self.combined['price'] = self.combined['Quantity'] * self.combined['Unit_Price']
+
+        
+
+        print("################################# PositionReport.csv #############################################################")
+
         print(self.combined)
+        self.combined.to_csv("output/PositionReport.csv")
+        
+        print(" The above merged data has been placed in PositionReport.csv file successfully")
