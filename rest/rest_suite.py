@@ -1,9 +1,23 @@
 import unittest
 import requests
+import json
+from ddt import ddt, data
 
+
+with open("data.json") as file:
+    try:
+        data1= json.load(file) 
+        print(data)
+    except json.decoder.JSONDecodeError:
+        print("Invalid JSON") 
+    else:
+        print("Valid JSON") 
+
+
+@ddt
 class test_suite(unittest.TestCase):
-
-   
+    
+  
 
     def get_api(self,api):
         ''' FUNTION USED TO GET THE USER FOR THE GIVE API'''
@@ -27,11 +41,11 @@ class test_suite(unittest.TestCase):
         if resp.status_code == 200:
             print("The test scenario is covered to test the reponse code 201 passed successfully")
             
-    def test2(self):
+    @data(data1[0],data1[1],data1[2])
+    def test2(self,value):
         
         ''' TEST CASE TO VALIDATE THE CREATE REQUEST '''
-        
-        resp_create = self.create_api('https://reqres.in/api/users',{"name" : "morpheus" , "job" : "leader"})  # can pass run time argument
+        resp_create = self.create_api('https://reqres.in/api/users',value)  # can pass run time argument
        
         if resp_create.status_code == 201:
             print("The test scenario is covered to test the reponse code 201 passed successfully")

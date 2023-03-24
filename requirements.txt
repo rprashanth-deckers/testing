@@ -1,5 +1,7 @@
 pandas
 numpy
+ddt
 python
 selenium
 unittest
+
