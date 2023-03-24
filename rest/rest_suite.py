@@ -3,7 +3,7 @@ import requests
 
 class test_suite(unittest.TestCase):
 
-
+   
 
     def get_api(self,api):
         ''' FUNTION USED TO GET THE USER FOR THE GIVE API'''
@@ -38,7 +38,7 @@ class test_suite(unittest.TestCase):
             
     def test3(self):
         
-        ''' TO TEST THE INVALID URL SCENRIO''''
+        ''' TO TEST THE INVALID URL SCENRIO'''
         
         
         try:
@@ -54,7 +54,7 @@ class test_suite(unittest.TestCase):
     def test4(self):
         
         '''TEST CASE TO VALIDATE A WRONG REQUES REQUEST '''
-        
+
         resp_create = self.create_api('https://reqres.in/api/users',{"name" : "morpheus" , "job" : "leader"})  # can pass run time argument
         
         try:

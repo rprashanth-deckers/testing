@@ -1,3 +1,5 @@
 pandas
 numpy
-pip install python
+python
+selenium
+unittest

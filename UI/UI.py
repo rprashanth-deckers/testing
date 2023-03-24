@@ -50,7 +50,6 @@ class test_suite(unittest.TestCase):
     def testSupport(self):
         
         """ LIST THE SUPPORT PAGE """
-        print("Entering case3")
         
         self.driver.get("https://reqres.in/#support-heading")
         time.sleep(5)
